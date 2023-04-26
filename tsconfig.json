@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./lib", 
+    "sourceMap": false,
+    "target": "esnext",
+    "module": "esnext",
+    "useDefineForClassFields": true,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true, //加载JSON
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "noUnusedLocals": true, //未使用变量报错
+    "removeComments": true, //删除注释
+    "declaration": true, //生成定义文件
+    "declarationMap": false,
+    "types": ["node"], //导入类型包
+    // "importsNotUsedAsValues": "error",
+    "paths": {
+      "src/*": ["src/*"],
+    },
+    // "verbatimModuleSyntax": true,
+    
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "./*.ts",
+  ],
+  "exclude": ["node_modules", "lib"]
+}
