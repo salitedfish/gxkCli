@@ -8,8 +8,8 @@
     "dest": "tiga"
   },
   "bin": {
-    "noa": "./src/index.ts",
-    "tiga": "./src/index.ts"
+    "gxk": "./tiga/index.cjs",
+    "tiga": "./tiga/index.cjs"
   },
   "scripts": {
     "prepare": "husky install",

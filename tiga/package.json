@@ -1,0 +1,17 @@
+{
+  "name": "@ultra-man/tiga",
+  "version": "0.0.1",
+  "bin": {
+    "gxk": "./index.cjs",
+    "tiga": "./index.cjs"
+  },
+  "author": "gxk",
+  "license": "MIT",
+  "typings": "src/index.d.ts",
+  "description": "The first light of the earth",
+  "sideEffects": false,
+  "keywords": [
+    "typescript",
+    "library"
+  ]
+}

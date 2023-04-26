@@ -49,8 +49,6 @@ const packageJsonPlugin = genPackageJson({
     },
     author,
     license: "MIT",
-    main: "index.cjs",
-    module: "index.mjs",
     typings: "src/index.d.ts",
     dependencies,
     description,
@@ -83,7 +81,7 @@ export default () => {
     ],
     /**同时支持ESModule和commonjs导出 */
     output: [
-      { file: `${dest}/index.mjs`, format: "esm", name },
+      // { file: `${dest}/index.mjs`, format: "esm", name },
       { file: `${dest}/index.cjs`, format: "cjs", name },
     ],
   };
