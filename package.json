@@ -1,15 +1,14 @@
 {
-  "name": "@ultra-man/tiga",
+  "name": "@ultra-man/gxk",
   "version": "0.0.1",
   "description": "The first light of the earth",
   "module": "src/index.ts",
   "main": "src/index.ts",
   "config": {
-    "dest": "tiga"
+    "dest": "gxk"
   },
   "bin": {
-    "gxk": "./tiga/index.cjs",
-    "tiga": "./tiga/index.cjs"
+    "gxk": "./gxk/index.cjs"
   },
   "scripts": {
     "prepare": "husky install",

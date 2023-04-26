@@ -1,2 +1,1 @@
 import "./gxkCli";
-import "./tigaCli";

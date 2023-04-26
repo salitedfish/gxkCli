@@ -1,6 +1,3 @@
-#!/usr/bin/env node
-// have fun!!!
-
 // 结果信息和处理函数
 import packageJSON from "../package.json";
 import { update } from "../bin/update";
