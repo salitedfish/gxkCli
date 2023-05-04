@@ -17,3 +17,7 @@ pnpm install @ultra-man/gxk -g
   pnpm link --global
 - 使用全局包  
   pnpm link --global @ultra-man/gxk
+
+# 问题
+
+- 如何将指令#! /usr/bin/env node 添加到打包后的文件（fs 直接写？）

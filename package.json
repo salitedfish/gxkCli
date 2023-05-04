@@ -5,10 +5,10 @@
   "module": "src/index.ts",
   "main": "src/index.ts",
   "config": {
-    "dest": "gxk"
+    "dest": "lib"
   },
   "bin": {
-    "gxk": "./gxk/index.cjs"
+    "gxk": "./lib/index.cjs"
   },
   "scripts": {
     "prepare": "husky install",
