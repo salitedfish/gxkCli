@@ -1,36 +1,18 @@
-// 结果信息和处理函数
-import packageJSON from "../package.json";
-import { update } from "../bin/update";
-import { open } from "../bin/open";
-const { name, version, author } = packageJSON;
+import { program } from "commander";
+import { name, version, author } from "../package.json";
+import { createHelp } from "./core/createHelp";
+import { createUpdate } from "./core/createUpdate";
+import { createAuthor } from "./core/createAuthor";
+import { createClone } from "./core/createClone";
+import { createName } from "./core/createName";
 
-// 命令行结果映射
-const handlerMap = {
-  "--name": name,
-  "-N": name,
-  "-n": name,
-  "--version": version,
-  "-V": version,
-  "-v": version,
-  "--author": author,
-  "--update": update,
-  "-U": update,
-  "-u": update,
-  "--open": open,
-  "-O": open,
-  "-o": open,
-};
+// 定义指令
+program.version(version);
+createAuthor(program, author);
+createHelp(program);
+createUpdate(program, name);
+createClone(program);
+createName(program, name);
 
-// 获取命令行指令和参数列表
-const option = process.argv[2];
-const argvs = process.argv.slice(3);
-
-// 根据命令行的参数进行打印
-const handler = handlerMap[option as keyof typeof handlerMap];
-if (handler) {
-  if (handler instanceof Function) {
-    handler(argvs);
-  } else {
-    console.log(handler);
-  }
-}
+// 解析参数
+program.parse(process.argv);
