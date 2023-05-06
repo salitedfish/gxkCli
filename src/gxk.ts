@@ -1,4 +1,5 @@
 import { program } from "commander";
+
 import { name, version, author } from "../package.json";
 import { createHelp } from "./core/createHelp";
 import { createUpdate } from "./core/createUpdate";

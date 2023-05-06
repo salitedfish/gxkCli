@@ -60,8 +60,8 @@ const packageJsonPlugin = genPackageJson({
 const rollupCopy = copy({
   targets: [
     { src: "./readme.md", dest },
-    { src: "./template", dest },
-    { src: "./gxkConfig.json", dest },
+    { src: "./src/template", dest },
+    { src: "./src/gxkConfig.json", dest },
   ],
 });
 

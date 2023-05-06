@@ -1,7 +1,7 @@
 import type { Command } from "commander";
 
 import { gitAddrMap } from "../config/gitAddrMap";
-import { term } from "../util/term";
+import { useTerm } from "../util/useTerm";
 
 /**
  * 根据配置的项目名称和git地址，下载项目
@@ -13,7 +13,7 @@ export const createClone = (program: Command) => {
       // 根据配置的名字获取git地址
       const address = gitAddrMap[name];
       // 根据地址下载项目
-      await term(`git clone ${address}`);
+      await useTerm(`git clone ${address}`);
     } catch (err) {
       console.log(err);
     }

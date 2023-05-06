@@ -1,6 +1,6 @@
 import type { Command } from "commander";
 
-import { term } from "../util/term";
+import { useTerm } from "../util/useTerm";
 
 /**
  * 更新gxk
@@ -14,7 +14,7 @@ export const createUpdate = (program: Command, name: string) => {
       if (version) {
         _version = version[0] !== "@" ? `@${version}` : version;
       }
-      await term(`npm install ${name}${_version} -g`);
+      await useTerm(`npm install ${name}${_version} -g`);
     } catch (err) {
       console.log(err);
     }

@@ -12,7 +12,13 @@ const correctCommand = (command: string) => {
   return _command;
 };
 
-export const term = (command: string, options: SpawnOptions = {}) => {
+/**
+ * 简化spawn的使用
+ * @param command
+ * @param options
+ * @returns
+ */
+export const useTerm = (command: string, options: SpawnOptions = {}) => {
   return new Promise((resolve) => {
     // 把指令字符串变成数组便于后面使用
     const args = command.split(" ");
