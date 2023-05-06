@@ -20,4 +20,4 @@ pnpm install @ultra-man/gxk -g
 
 # 问题
 
-- 如何将指令#! /usr/bin/env node 添加到打包后的文件（fs 直接写？）
+- 如何将指令#! /usr/bin/env node 添加到打包后的文件开头（fs 直接写有点暴力？）

@@ -58,7 +58,11 @@ const packageJsonPlugin = genPackageJson({
 
 /**复制文件夹到指定文件夹 */
 const rollupCopy = copy({
-  targets: [{ src: "./readme.md", dest }],
+  targets: [
+    { src: "./readme.md", dest },
+    { src: "./template", dest },
+    { src: "./gxkConfig.json", dest },
+  ],
 });
 
 export default () => {

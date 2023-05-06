@@ -2,8 +2,13 @@ import type { Command } from "commander";
 
 import { term } from "../util/term";
 
+/**
+ * 更新gxk
+ * @param program
+ * @param name
+ */
 export const createUpdate = (program: Command, name: string) => {
-  const updateAction = async (version?: string) => {
+  const action = async (version?: string) => {
     try {
       let _version = "";
       if (version) {
@@ -15,5 +20,5 @@ export const createUpdate = (program: Command, name: string) => {
     }
   };
 
-  program.command("update [version]").action(updateAction);
+  program.command("update [version]").action(action);
 };

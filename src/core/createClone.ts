@@ -3,8 +3,12 @@ import type { Command } from "commander";
 import { gitAddrMap } from "../config/gitAddrMap";
 import { term } from "../util/term";
 
+/**
+ * 根据配置的项目名称和git地址，下载项目
+ * @param program
+ */
 export const createClone = (program: Command) => {
-  const downloadAction = async (name: keyof typeof gitAddrMap) => {
+  const action = async (name: keyof typeof gitAddrMap) => {
     try {
       // 根据配置的名字获取git地址
       const address = gitAddrMap[name];
@@ -15,5 +19,5 @@ export const createClone = (program: Command) => {
     }
   };
 
-  program.command("clone <name>").action(downloadAction);
+  program.command("clone <name>").action(action);
 };
