@@ -1,0 +1,24 @@
+
+// 通用
+@font-color-success: green;
+
+// 暗主题色
+@background-color-dark: #333;
+
+
+// 亮主题色
+@background-color-light: #fff;
+
+
+.common {
+    --font-color-success: @font-color-success
+}
+
+.dark {
+    background-color: @background-color-dark;
+    --background-color: @background-color-dark;
+}
+.light {
+    background-color: @background-color-light;
+    --background-color: @background-color-light;
+}

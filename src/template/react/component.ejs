@@ -1,8 +1,33 @@
 
-export const <%= data.name%> = () => {
+// 框架
+import { useState, useEffect } from "react";
+// 组件
+// 工具
+// 接口
+// 数据
+// 类型
+type Props = {
+  name: string
+}
 
-    return (
-        <div><%= data.name%></div>
-    )
 
+export default function <%= data.name%> (props: Props) {
+  // 公共业务
+  const { name } = props
+
+  // 独立业务
+  const [num, setNum] = useState(0)
+
+  useEffect(() => {
+    console.log("num改变了")
+  }, [num])
+
+  /**--- 分割线 ---*/
+  return (
+    <div className="<%= data.name %>">
+        <div>name: <%= data.name%></div>
+        <div>props: { name }</div>
+        <div onClick={() => setNum(1) }>state: { num } </div>
+    </div> 
+  )
 }

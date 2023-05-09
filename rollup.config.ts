@@ -8,7 +8,7 @@ import babel from "@rollup/plugin-babel";
 import genPackageJson from "rollup-plugin-generate-package-json";
 import copy from "rollup-plugin-copy";
 import packageJSON from "./package.json";
-// import { terser } from "rollup-plugin-terser";
+import { terser } from "rollup-plugin-terser";
 /**rollup-plugin test */
 
 const getPath = (_path: string) => path.resolve(__dirname, _path);
@@ -71,17 +71,7 @@ export default () => {
     input: getPath("./src/index.ts"),
     /**排除外部引入的包 */
     external: Object.keys(dependencies),
-    plugins: [
-      nodeResolve({}),
-      esPlugin,
-      rollupJSON(),
-      tsPlugin,
-      babelPlugin,
-      commonjs(),
-      // terser(),
-      packageJsonPlugin,
-      rollupCopy,
-    ],
+    plugins: [nodeResolve({}), esPlugin, rollupJSON(), tsPlugin, babelPlugin, commonjs(), terser(), packageJsonPlugin, rollupCopy],
     /**同时支持ESModule和commonjs导出 */
     output: [
       // { file: `${dest}/index.mjs`, format: "esm", name },

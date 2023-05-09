@@ -1,6 +1,6 @@
 <script lang="ts">
 // 框架
-import { defineComponent, ref, reactive } from "vue";
+import { defineComponent, ref, reactive, onMounted } from "vue";
 // 组件
 // 工具
 // 接口
@@ -11,13 +11,24 @@ export default defineComponent({
 });
 </script>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+// 公共业务
+const data = ref(null)
+
+// 独立业务
+
+// 生命周期
+onMounted(() => {})
+
+</script>
 
 <template>
-  <div>
+  <div class="<%= data.name %>">
     <%= data.name %>
   </div>
 </template>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+  .<%= data.name %> {}
+ </style>
     
