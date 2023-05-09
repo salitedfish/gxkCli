@@ -11,7 +11,7 @@ const globalConfigPath = path.resolve(__dirname, currentConfigPath);
  * 获取全局和当前目录的配置，组成数组返回
  * @returns
  */
-export const getConfig = () => {
+export const getConfig = (): [Record<string, string>, Record<string, string>] => {
   // 获取全局和项目的配置文件
   const globalJSON = fs.readFileSync(globalConfigPath, {
     encoding: "utf-8",
