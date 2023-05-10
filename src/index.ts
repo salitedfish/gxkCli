@@ -10,6 +10,7 @@ import { createTouch } from "./core/createTouch";
 import { createGet } from "./core/createGet";
 import { createSet } from "./core/createSet";
 import { createInit } from "./core/createInit";
+import { createQuestion } from "./core/createQuestion";
 
 // 定义指令
 program.version(version);
@@ -22,6 +23,7 @@ createName(program, name);
 createTouch(program);
 createGet(program);
 createSet(program);
+createQuestion(program);
 
 // 解析参数
 program.parse(process.argv);

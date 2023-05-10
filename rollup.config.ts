@@ -72,9 +72,9 @@ export default () => {
     /**排除外部引入的包 */
     external: Object.keys(dependencies),
     plugins: [nodeResolve({}), esPlugin, rollupJSON(), tsPlugin, babelPlugin, commonjs(), terser(), packageJsonPlugin, rollupCopy],
-    /**同时支持ESModule和commonjs导出 */
+    /**同时支持ESModule和commonjs导出，不过一般在node环境执行命令，所以一般只用cjs */
     output: [
-      // { file: `${dest}/index.mjs`, format: "esm", name },
+      { file: `${dest}/index.mjs`, format: "esm", name },
       { file: `${dest}/index.cjs`, format: "cjs", name },
     ],
   };
