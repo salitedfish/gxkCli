@@ -11,13 +11,15 @@ const currentConfigPath = config.config;
  * @param program
  */
 export const createInit = (program: Command) => {
-  const action = () => {
-    // 读取全局的配置文件字符串
-    const [globalConfig] = getConfig();
+  const action = async () => {
     // 在当前目录下创建配置文件
-    useTerm(`touch ${currentConfigPath}`);
+    await useTerm(`touch ${currentConfigPath}`);
+    // 读取全局的配置文件字符串
+    const globalConfig = getConfig({ global: true });
+    // 将配置转变为字符串
+    const globalConfigJSON = JSON.stringify(globalConfig);
     // 在当前目录下的配置文件写下全局配置
-    setConfig(JSON.stringify(globalConfig));
+    setConfig(globalConfigJSON);
   };
-  program.command("init").description(`create the current ${currentConfigPath} by global ${currentConfigPath}`).action(action);
+  program.command("init").description(`create the current ${currentConfigPath}`).action(action);
 };

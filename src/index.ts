@@ -11,6 +11,7 @@ import { createGet } from "./core/createGet";
 import { createSet } from "./core/createSet";
 import { createInit } from "./core/createInit";
 import { createQuestion } from "./core/createQuestion";
+import { createNpmRun } from "./core/createNpmRun";
 
 // 定义指令
 program.version(version);
@@ -24,6 +25,7 @@ createTouch(program);
 createGet(program);
 createSet(program);
 createQuestion(program);
+createNpmRun(program);
 
 // 解析参数
 program.parse(process.argv);

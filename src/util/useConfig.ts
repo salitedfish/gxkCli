@@ -1,30 +1,32 @@
 import path from "path";
 import fs from "fs";
 
-import { Position } from "../config/enum";
 import { config } from "../../package.json";
+import { useReadFile } from "../util/useReadFile";
 
+// 获取全局或者项目配置文件路径
 const currentConfigPath = config.config;
 const globalConfigPath = path.resolve(__dirname, currentConfigPath);
+const getConfigPath = (global?: boolean) => {
+  return global ? globalConfigPath : currentConfigPath;
+};
 
 /**
- * 获取全局和当前目录的配置，组成数组返回
+ * 获取全局或当前目录的配置
  * @returns
  */
-export const getConfig = (): [Record<string, string>, Record<string, string>] => {
-  // 获取全局和项目的配置文件
-  const globalJSON = fs.readFileSync(globalConfigPath, {
-    encoding: "utf-8",
-  });
-  const currentJSON = fs.readFileSync(currentConfigPath, {
-    encoding: "utf-8",
-  });
-
-  const globalConfig = JSON.parse(globalJSON);
-  const currentConfig = JSON.parse(currentJSON);
-
-  // 返回配置文件，如果没获取到则返回{}
-  return [globalConfig || {}, currentConfig || {}];
+export const getConfig = (options: { global?: boolean } = {}): Record<string, string> => {
+  try {
+    const configPath = getConfigPath(options.global);
+    const configJSON = useReadFile(configPath);
+    if (configJSON) {
+      const config = JSON.parse(configJSON);
+      return config;
+    }
+    return {};
+  } catch (err) {
+    return {};
+  }
 };
 
 /**
@@ -32,13 +34,11 @@ export const getConfig = (): [Record<string, string>, Record<string, string>] =>
  * @param configStr
  * @param options
  */
-export const setConfig = (configStr: string, options?: { global?: boolean }) => {
+export const setConfig = (configStr: string, options: { global?: boolean } = {}) => {
   // 如果有global则修改全局的配置，否则修改当前目录下的配置
-  if (options && options.global) {
-    fs.writeFileSync(globalConfigPath, configStr);
-  } else {
-    fs.writeFileSync(currentConfigPath, configStr);
-  }
+  const configPath = getConfigPath(options.global);
+  // 修改全局或项目的配置
+  fs.writeFileSync(configPath, configStr);
 };
 
 /**
@@ -47,9 +47,12 @@ export const setConfig = (configStr: string, options?: { global?: boolean }) => 
  * @returns
  */
 export const getGxkConfigValueByKey = (key: string) => {
-  const configs = getConfig();
-  // 如果项目配置下有key的值，则返回，否则返回全局配置key的值
-  return configs[Position.CURRENT][key] || configs[Position.GLOBAL][key];
+  // 如果项目配置下有key的值，则返回
+  const currentConfigs = getConfig();
+  if (currentConfigs[key]) return currentConfigs[key];
+  // 否则返回全局配置key的值
+  const globalConfigs = getConfig({ global: true });
+  return globalConfigs[key];
 };
 
 /**
@@ -58,14 +61,11 @@ export const getGxkConfigValueByKey = (key: string) => {
  * @param value
  * @param options
  */
-export const setConfigValueByKey = (key: string, value: string, options?: { global?: boolean }) => {
-  const configs = getConfig();
-  // 如果有global则修改全局的配置，否则修改当前目录下的配置
-  if (options && options.global) {
-    configs[Position.GLOBAL][key] = value;
-    fs.writeFileSync(globalConfigPath, JSON.stringify(configs[Position.GLOBAL]));
-  } else {
-    configs[Position.CURRENT][key] = value;
-    fs.writeFileSync(currentConfigPath, JSON.stringify(configs[Position.CURRENT]));
-  }
+export const setConfigValueByKey = (key: string, value: string, options: { global?: boolean } = {}) => {
+  // 获取全局或项目的配置
+  const config = getConfig({ global: options?.global });
+  const configPath = getConfigPath(options.global);
+  // 修改全局或项目的配置
+  config[key] = value;
+  fs.writeFileSync(configPath, JSON.stringify(config));
 };

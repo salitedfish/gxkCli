@@ -9,7 +9,8 @@
     "config": "gxkConfig.json"
   },
   "bin": {
-    "gxk": "./lib/index.cjs"
+    "gxk": "./lib/index.cjs",
+    "k": "./lib/index.cjs"
   },
   "scripts": {
     "prepare": "husky install",

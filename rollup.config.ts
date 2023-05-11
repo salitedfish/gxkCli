@@ -45,6 +45,7 @@ const packageJsonPlugin = genPackageJson({
     version,
     bin: {
       gxk: "./index.cjs",
+      k: "./index.cjs",
     },
     author,
     license: "MIT",
