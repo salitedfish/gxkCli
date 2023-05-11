@@ -28,7 +28,7 @@ export const createNpmRun = (program: Command) => {
       {
         type: "list",
         name: "script",
-        message: "Select an npm script to run?",
+        message: "Select a script",
         choices: scripts,
         default: null,
       },
